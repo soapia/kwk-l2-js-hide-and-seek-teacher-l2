@@ -12,22 +12,14 @@ function nestedTarget() {
 
 function deepestChild() {
   let element = document.getElementById('grand-node') // find the element with an id of #grand-node
-  let firstBorn = element.children[0] // find the first item within grand node
+  let child = element.querySelectorAll('div') // find the items within grand node
 
-  while (firstBorn) { // when another child still exists
-    element = firstBorn // make the thing we're parsing through the child
-    firstBorn = element.children[0]
-  }
-
-  return element
+  return child[3] // return the final div in the array
 }
 
-function increaseRankBy(n) {
-  const element = document.querySelectorAll('.ranked-list') // find the elements with a class of ranked-list
-  for (let key = 0, size = element.length; key < size; key++) { // start with the key being 0, define the size of the array, do smth when the key is less than the size, add to key each time
-    let children = element[key].children
-    for (let value = 0, length = children.length; value < length; value++) {
-      children[value].innerHTML = parseInt(children[value].innerHTML) + n
+function increaseRankBy(num) {
+  const children = document.querySelectorAll('ul.ranked-list') // find the ul elements with a class of ranked-list
+    for (let key = 0, length = children.length; key < length; key++) { // start off with a key of 0, make the variable length equal to the length of the children array, add one to the key for when the key is less than the length
+      children[key].innerHTML = parseInt(children[key].innerHTML) + num // find the text at a given key of the array and convert it to an integer, THEN add the number to it
     }
-  }
 }
